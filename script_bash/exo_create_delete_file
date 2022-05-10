@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#Script capable de créer ou de supprimer un fichier.
+#Création de fonction pour récup fichier 
+recup_file() {
+	ls $1 2> /dev/null
+	if [ $? = 0 ]; then	
+		return 1
+	fi
+}
+
+#Déclaration du choix à faire
+echo Merci d\'entrer le n° correspondant à votre choix
+echo 1. Création d\'un fichier
+echo 2. Suppression d\'un fichier
+read -p "Quel est votre choix ? " choix_fichier
+
+#Saisie de votre choix
+case $choix_fichier in
+	1) #Création d'un fichier 
+		read -p "Merci d'entrer le nom du fichier à créer : " nom_fichier
+		recup_file $nom_fichier
+		if [ $? = 1 ]; then
+			echo Le fichier $nom_fichier existe déjà
+		else
+			touch $nom_fichier && echo Le fichier $nom_fichier a été bien créé
+		fi
+		;;
+	2) #Suppression d'un fichier
+		read -p "Merci d'entrer le nom du fichier à supprimer : " nom_fichier
+		recup_file $nom_fichier
+		if [ $? -ne 1 ]; then 
+			echo Le fichier $nom_fichier n\'existe pas 
+		else
+			rm -f $nom_fichier && echo Le fichier $nom_fichier a été bien supprimé
+		fi
+		;;
+	*) #Erreur de choix
+		echo Vous devez choisir entre 1 et 2
+		;;
+esac
+	

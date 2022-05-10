@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#Script capable d'effectuer la création et la suppression d'un utilisateur.
+#fonction pour récupérer le liste des utilisateurs
+recup_user() {
+	list_user=`cut -d: -f1 /etc/passwd`
+	for user in $list_user; do
+		if [ $user = $1 ]; then
+			return 1
+		fi
+	done
+}
+
+#Déclaration du choix à faire
+echo Merci d\'entrer le n° correspondant à votre choix
+echo 1. Création d\'un utilisateur
+echo 2. Suppression d\'un utilisateur
+read -p "Quel est votre choix ? " CHOIX
+
+#Saisie de votre choix
+case $CHOIX in
+		1) #Création d'un utilisateur
+			read -p "Merci d'entrer le nom de l'utilisateur : " nom_user
+			recup_user $nom_user
+			if [ $? = 1 ]; then 
+				echo L\'utilisateur $nom_user existe déjà
+			else
+				useradd $nom_user && echo L\'utilisateur $nom_user a été bien créé
+			fi
+			;;
+		2) #Suppression de l'utilisateur
+			read -p "Merci d'entrer le nom de l'utilisateur : " nom_user
+			recup_user $nom_user
+			if [ $? != 1 ]; then
+			       echo L\'utilisateur $nom_user n\'existe pas
+			else
+				userdel $nom_user && echo L\'utilisation $nom_user a été bien supprimé
+			fi
+			;;
+		*) #Erreur de choix
+		       echo Vous devez choisir entre 1 et 2
+	       	       ;;
+esac	       
+
+		

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+nombre_arguments=$#
+fichiers=$*
+
+#Fontion pour vérifier l'entré d'un argument
+verif_nombre_argument() {
+	if [ $nombre_arguments = 0 ]; then
+		echo "Vous n'avez pas mis d'argument"
+		return 2
+	fi
+}
+verif_nombre_argument
+
+#Fonction pour vérifier l'existence d'un fichier
+verif_existence_fichiers() {
+	for fichier in $fichiers; do
+		if [ -e $fichier ]; then
+			echo "Le fichier $fichier existe bien"
+		else
+			echo "Le fichier $fichier n'existe pas"
+		fi
+	done
+}
+verif_existence_fichiers
+

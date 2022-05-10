@@ -1,0 +1,46 @@
+#!/bin/bash
+fichier=$1
+action=$2
+nombre_fichier=$#
+#Vérification de l'entrer et de l'existence d'un fichier
+verif_entre_et_existence_fichier(){
+	if [ $nombre_fichier = 0 ]; then
+		echo "Merci d'entrer le nom du fichier"
+		echo "exple : ./case_exo nom_fichier (toto)"
+	elif [ -e $fichier ]; then
+		echo "Le fichier $fichier existe bien"
+		echo "Actions disponibles : copy, delete ou read"
+	else
+		echo "Le fchier $fichier n'existe pas"
+	fi
+}
+verif_entre_et_existence_fichier
+#Action à faire après vérification
+case $action in 
+	copy)
+		mkdir /tmp/script 2> /dev/null
+		echo "Le dossier /tmp/script a été créé avec succès"
+		cp $fichier /tmp/script
+		if [ $? = 0 ]; then
+			echo "Le fichier $fichier a été bien copié"
+		else	
+			echo "Une erreur a eu lieu lors de la copie"
+		fi
+		;;
+	delete)
+		rm $fichier
+		if [ $? = 0 ]; then
+			echo "Le fichier $fichier a été supprimé avec succès"
+		else
+			echo "Une erreur est survenue lors de la suppression"
+		fi
+		;;
+	read)
+		cat $fichier
+		if [ $? = 0 ]; then
+			echo "Le fichier a été lu avec succès"
+		else
+			echo "Une erreur est survenu lors de l'affichage"
+		fi
+		;;	
+esac

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+read -p "Merci de rentrer votre age : " AGE
+
+readonly AGE
+
+AGE="Bonjour" 

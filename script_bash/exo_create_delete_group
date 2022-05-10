@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#Script capable d'effectuer la création et la suppression d'un groupe.
+#Fonction pour récupérer la liste du groupe
+recup_group() {
+	list_group=`cut -d: -f1 /etc/group`
+	for group in $list_group; do
+		if [ $group = $1 ]; then
+			return 1
+		fi
+	done
+}
+
+echo Merci d\'entrer le n° correspondant à votre choix
+echo " "
+echo 1. Création d\'un groupe
+echo " "
+echo 2. Suppression d\'un groupe
+#Vérification puis création ou suppression d'un group
+read -p "Quel est votre choix ? " choix_group
+case $choix_group in
+			1) #création d'un groupe
+				read -p "Merci d'entrer le nom du groupe à créer : " nom_group
+				recup_group $nom_group
+				if [ $? = 1 ]; then
+					echo Le nom du groupe $nom_group existe déjà
+				else
+					groupadd $nom_group && echo Le nom du groupe $nom_group a été bien créé
+				fi
+				;;
+			2) #Suppression d'un groupe
+				read -p "Merci d'entrer le nom du groupe à supprimer : " nom_group
+				recup_group $nom_group 
+				if [ $? != 1 ]; then 
+					echo Le nom du goupe $nom_group n\'existe pas
+				else
+					groupdel $nom_group && echo Le nom du groupe $nom_group a été bien supprimé
+				fi
+				;;
+			*) #Erreur de choix
+				echo Vous devez choisir entre 1 et 2
+				;;
+esac
+

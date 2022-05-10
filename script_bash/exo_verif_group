@@ -1,0 +1,27 @@
+#!/bin/bash
+#Script capable de vérifier si le nom du groupe saisi correspond à un nom de groupe existant.
+#Pistes :
+#•Utiliser le contenu du fichier /etc/group
+#•Se servir de la commande cut
+
+#Récupération du nom du group
+recup_group() {
+	list_group=`cut -d: -f1 /etc/group`
+	for group in $list_group; do
+		if [ $group = $1 ]; then
+			return 1
+		fi
+	done
+}
+
+#Vérif de l'existence du nom du group 
+read -p "Quel est le nom du groupe à vérifier ? " nom_group
+recup_group $nom_group
+	if [ $? = 1 ]; then
+		echo Le groupe $nom_group existe bien
+		exit 1
+	else
+		echo Le groupe $nom_group n\'existe pas
+	fi
+
+

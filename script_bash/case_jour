@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#Afficher les jours de la semaine avec le case
+read -p "Quel est le jour correspondant : " jour
+case $jour in
+	1)
+		echo "Lundi"
+		;;
+	2)
+		echo "Mardi"
+		;;
+	3)
+		echo "Mercredi"
+		;;
+	4)
+		echo "Jeudi"
+		;;
+	5)
+		echo "Vendredi"
+		;;
+	6)
+		echo "Samedi"
+		;;
+	7)
+		echo "Dimanche"
+		;;
+	*)
+		echo "Ce jour n'existe pas"
+		;;
+esac
+
+

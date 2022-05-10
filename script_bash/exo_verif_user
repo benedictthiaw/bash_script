@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#Script capable de vérifier si le nom d'utilisateur saisi 
+#correspond à un nom d'utilisateur déjà existant.
+
+#Récupération de la liste des utilisateurs existants
+recup_user() {
+	list_users=`cut -d: -f1 /etc/passwd`
+	for user in $list_users; do
+		if [ $1 = $user ]; then
+			return 1			
+		fi
+	done
+}
+
+#Vérif de l'existence ou non d'un utilisateur
+read -p "Merci de rentrer le nom du user : " nom_user
+recup_user $nom_user
+if [ $? -eq 1 ]; then
+	echo "L'utisateur $nom_user existe bien"
+	exit 1
+else
+	echo "L'utilisateur $nom_user n'exite pas"
+fi

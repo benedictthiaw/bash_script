@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#Script capable de modifier les droits de propriété sur un fichier.
+#Vérif de l'existence d'un fichier
+verif_existence_fichier() {
+	ls $1 2> /dev/null
+	if [ $? = 0 ]; then 
+		return 0
+	else
+		return 1
+	fi
+}
+
+#Saisir le nom du fichier à modifier
+read -p "Saisir le fichier dont les droits sont à modifier : " nom_fichier
+#Modifification des droits d'un fichier
+verif_existence_fichier $nom_fichier
+if [ $? = 0 ]; then
+	read -p "Quel est le nom du nouvel utilisateur des droits proprios ? " new_user
+	read -p "Quel est le nom du nouveau groupe des droits propriops ? " new_group
+	chown $new_user:$new_group  $nom_fichier
+else
+	echo Le fichier $nom_fichier n\'existe pas
+	exit 2
+fi
+
+
+
+	

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+fichiers=$@
+action=$2
+verif_existence_fichier () {
+	   for fichier in $fichiers; do
+		ls -l $fichier 2> /dev/null
+		if [ $? -eq 0 ]; then
+			echo "Le fichier $fichier exite bien"
+			echo "Action disponibles : copy, delete ou read"
+		elif [ $? -ne 0 ]; then
+			echo "Le fichier $fichier n'existe pas"
+		       	echo "Attention a preciser un nom de fichier et l'action"
+		fi
+	   done
+}
+verif_existence_fichier
+case $2 in
+	copy)
+		mkdir /tmp/script 2> /dev/null
+		cp $fichier /tmp/script/
+		if [ $? -eq 0 ]; then
+			echo "Le fichier $fichier a bien été copié dans /tmp/script"
+		else
+			echo "Une erreur a eu lieu au moment de la copie"
+			exit 2
+		fi
+		;;
+	delete)
+		rm $fichier
+		if [ $? -eq 0 ]; then
+			echo "Le fichier $fichier a été bien supprimé"
+		else
+			echo "Une erreur a eu lieu au moment de la suppression"
+		fi
+		;;
+	read)
+		cat $fichier
+		if [ $? -eq 0 ]; then
+			exit 0
+		else
+			"une erreur a eu lieu au moment de la lecture"
+			exit 3
+		fi
+		;;
+esac

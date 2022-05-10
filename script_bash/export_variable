@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#Précision de la variable nom qu'on souhaite créer avec typese/declare"
+typeset -x nom="THIAW"
+typeset -x prenom="Bénédict"
+declare -x age=30
+
+echo "La variable nom a pour valeur : $nom"
+echo "La variable prenom a pour valeur : $prenom"
+echo La variable age a pour valeur : $age
+
+declare -x age=26
+echo La variable age a pour valeur : $age
+
+
+#Va falloir préciser en ligne de commande la variable nom avec typeset 
+#echo "La variable nom a pour valeur : $nom"
+

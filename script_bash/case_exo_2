@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#Faire un script prenant deux arguments :
+#- Premier argument : nom d'un fichier
+#- Deuxième argument : peut prendre plusieurs valeurs comme copy (copie le fichier 
+#dans le répertoire /tmp/script), delete (supprime le fichier) et read (lire le fichier).
+#Il faudra créer une fonction qui vérifiera que le fichier rentré en argument existe bien, 
+#et utiliser les case pour les différentes possibilités).
+
+#Vérification de l'entrer et de l'existence d'un fichier
+verif_entre_et_existence_fichier(){
+	if [ -z $1 ]; then
+		echo "Merci d'entrer le nom du fichier"
+		echo "exple : ./case_exo nom_fichier (toto)"
+	
+		case $1 in
+	        	 0)
+				 if [ -e $1 ]; then
+			 		echo "Le fichier $1 existe bien"
+					echo "Actions disponibles : copy, delete ou read"
+				else
+					echo "Le fchier $1 n'existe pas"
+				fi
+				;;
+		esac
+	fi
+}
+verif_entre_et_existence_fichier
+
+#Action à faire après vérification
+case $2 in 
+	copy)
+		mkdir /tmp/script
+		echo "Le dossier /tmp/script a été créé avec succès"
+		cp $1 /tmp/script
+		echo "Le fichier $1 a été bien copié"
+		;;
+	delete)
+		rm $1
+		echo "Le fichier $1 a été supprimé avec succès"
+		;;
+	read)
+		cat $1
+		echo "Le fichier a été lu avec succès"
+		;;	
+esac

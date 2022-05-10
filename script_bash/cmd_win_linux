@@ -1,0 +1,83 @@
+#Linux commands
+cat /etc/passwd
+
+cat /etc/login.defs
+
+cat /etc/pam.d/system-auth-ac
+
+chage -l root
+
+chage -l <user> (account aging information)
+
+cat /etc/pam.d/common-password
+
+cat /etc/security/pwquality.conf
+
+ls -ail /etc/ssh/sshd_config
+
+cat /etc/ssh/sshd_config
+
+ls -l /etc/sudoers.d
+
+cat /etc/sudoers.d/*.*
+
+cat /etc/issue
+
+cat /proc/version
+
+cat /var/log/sudo.log
+
+cat /var/log/auth.log
+
+rpm -qa --last
+
+service --status-all
+
+systemctl list-units --type service --all
+
+chkconfig --list
+
+find /  -path /proc -prune -o -type f \( -perm -4000 -o -perm -2000 \) -exec ls -l {} \;
+
+find / -nouser -o -nogroup -exec ls -l {} \;
+
+
+
+#faire un script powershell et shell pour récupérer le contenu des commandes listées ci-dessous.
+
+Windows commands
+tasklist /svc
+
+tasklist /m
+
+systeminfo
+
+findstr /SI password *.txt
+
+findstr /SI password *.xml
+
+findstr /si password *.ini
+
+net user
+
+net localgroup
+
+net view /domain
+
+net share
+
+route print
+
+ipconfig /all
+
+netstat -ano
+
+wmic ntdomain list
+
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+wmic service get name,displayname,pathname,startmode | findstr /i "auto" | findstr /i /v "C:\windows\\" 
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+
+ 

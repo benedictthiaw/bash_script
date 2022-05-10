@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#Fonction verifiant si le fichier existe
+function verif_fichier_existe(){
+        ls -l $1 > /dev/null
+        case $? in
+                0)
+                        echo "Le fichier $1 existe bien"
+                        return 0
+                        ;;
+                *)
+                        echo "Le fichier $1 n'existe pas"
+                        return 1
+                        ;;
+        esac
+}
+#Verifie si l'utilisateur a bien indiqué un nom de fichier
+if [ -z $1 ] || [ -z $2 ]; then
+        echo "Attention a preciser un nom de fichier et l'action"
+        echo "Actions disponibles :  copy, delete, ou read"
+        exit 1
+fi
+
+Execution de la fonction de verification
+verif_fichier_existe $1
+if [ $? -ne 0 ]; then
+        exit 2
+
+fi

@@ -1,0 +1,25 @@
+#!/bin/bash
+case $1 in 
+#	stop)
+	stop | STOP)
+#	[sS][tT][oO][pP] )
+#		systemcl stop apache2
+#		/etc/init.d/apache2 stop
+		kill $(cat /var/run/apache2/apache2.pid)
+		echo "Le service apache2 est stoppé"
+#		systemctl status apache2
+#		echo "voici le statut d'apache2"
+		;;
+#	start)
+	START | start)
+#	[sS][tT][aA][rR][tT] )
+#               systemctl start apache2
+		/etc/init.d/apache2 start
+		echo "Le service apache2 est demarré"
+		echo "voici le statut d'apache2"
+		systemctl status apache2
+                ;;
+	*)
+		echo "Merci d'indiquer en argument start ou stop"
+		;;
+esac

@@ -1,0 +1,26 @@
+#!/bin/bash
+# 1-compteur qui affiche le chiffre saisi jusqu'à 100
+#read -p "Entrez un chiffre ?" chiffre
+#while [ $chiffre -le 100 ]; do 
+#echo "Le compteur est à $chiffre"
+#chiffre=`expr $chiffre + 1`
+#done
+# 2-compteur qui affiche le saisi jusqu'à 1
+#read -p "Entrez un chiffre ?" chiffre
+#while [ $chiffre -gt 0 ]; do
+#echo "Le compteur est à $chiffre"
+#chiffre=`expr $chiffre - 1`
+#done
+# ou
+read -p "Entrez un chiffre ?" chiffre
+while [ $chiffre -gt 0 ]; do
+echo "Le compteur est à $chiffre"
+chiffre=$(( $chiffre - 1 ))
+done
+
+
+
+
+
+
+

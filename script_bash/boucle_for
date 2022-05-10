@@ -1,0 +1,136 @@
+#!/bin/bash
+
+#1ère façon d'uliser la boucle for
+#valeurs="Modou Laye Paul Seb"
+
+#for nom in $valeurs; do
+#	echo "Le nom de chacun est : $nom"
+#done
+
+#couleurs='vert jaune rouge bleu noir'
+#for couleur in $couleurs
+#do
+#	echo "La couleur est : $couleur"
+#done
+
+#2ème façon d'utiliser la boucle for
+#for i in 1 2 3 4 5; do
+#	echo "Hello $i"
+#done
+
+#Autre façon de marque les n nombre par exple de 1 à 25
+
+#for i in {1. .25. .1}; do
+#	echo "Hi $i"
+#done
+
+#for i in {1. .5}
+#do
+#  echo "Hi $i"
+#done
+
+#Utilisation de Bash pour créer une boucle à l'infini
+#for (( ; ; )); do
+#	echo "Hello World !"
+#done
+
+#Meilleur façon d'utiliser la boucle pour "for"
+
+#for (( cpt=1; cpt<=5; cpt++ )); do
+#	echo "Le resultat du compteur est : $cpt"
+#done
+
+#Ajouter une condition if dans une boucle for pour faire sauter la boucle et continuer
+
+#for i in 1 2 3 4 5; do
+#	if [ $i == 4 ]; then
+#		continue
+#	fi
+#	echo "la valeur de i est : $i"
+#done
+
+#Boucle for pour créer un arrêt conditionnel avec l'instruction break"
+for city in Manila Bangkok Jakarta Kuala Lumpur; do
+	if [ $city == Jakarta ]; then
+		break
+	fi
+	echo "city = $city"
+done
+echo "Yes, that's all !!!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
