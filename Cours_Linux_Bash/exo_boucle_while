@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Vérifier qu'une personne peut ou non travailler 
+age=0
+while [ $age -lt 18 ] || [ $age -gt 65 ]; do
+	echo "Il faut être entre 18 et 65"
+	read -p "Quel est votre age ? " age
+
+	if [ $age -ge 18 ] && [ $age -le 65 ]; then
+        	echo "Vous pouvez travailler !"
+	else
+		echo "Vous ne pouvez pas travailler"
+	fi
+	
+done

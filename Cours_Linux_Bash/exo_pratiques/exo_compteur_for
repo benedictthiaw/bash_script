@@ -1,0 +1,10 @@
+#!/bin/bash
+
+##### Questions pour cet exercice ######
+#Code permettant de réaliser un compteur démarrant à 0 et allant jusqu'au chiffre entré par l'utilisateur
+
+echo "Merci de rentrer un chiffre : "
+read cpt
+for i in `seq 0 $cpt`; do
+	echo "Le compteur est à $i"
+done

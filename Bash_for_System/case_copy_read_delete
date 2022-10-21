@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Faire un script prenant deux arguments :
+# - Premier argument : nom d'un fichier
+# - Deuxième argument : peut prendre plusieurs valeurs comme copy (copie le fichier dans le répertoire /tmp/script), delete (supprime le fichier) et read (lire le fichier).
+# Il faudra créer une fonction qui vérifiera que le fichier rentré en argument existe bien, et utiliser les case pour les différentes possibilités).
+
+fichier="$1"
+action="$2"
+nbre_param="$#"
+# Verif existence fichier 
+function verif_files_existe() {
+	### Verif le nombre d'argument
+	if [ $nbre_param -eq 0 ]; then
+		echo "Merci de rentrer un paramètre"
+	elif [ $nbre_param -eq 1 ]; then 
+		echo "Il faut mettre 2 arguments :" 
+	 	echo "===> 1er Mettre le nom du fichier" 
+		echo "===> 2eme action à effectuer (copy, read ou delete)"
+	fi
+	### Verif existence fichier
+	if [ -e $fichier ]; then
+		echo "Le fichier $fichier existe bien"
+	else
+		echo "Le fichier $fichier n'existe pas"
+	fi
+}
+
+action_a_realise() {
+	### verif de nouveau existence fichier
+	if [ -e $fichier ]; then 
+		### Declarer action a effectuer
+		case $action in
+			copy)
+				cp $fichier /tmp/script
+				if [ $? -eq 0 ]; then
+					echo "Le fichier $fichier a été bien copié"
+				fi
+				;;
+			read)
+				ls -l $fichier
+				if [ $? -eq 0 ]; then
+					echo "Le fichier $fichier a bien été lu"
+				fi
+				;;
+			delete)
+				rm -f $fichier
+				if [ $? -eq 0 ]; then
+					echo "Le fichier $fichier a été bien supprimé"
+				fi
+				;;
+			*)
+				echo "Il faut choisir parmi les 3 actions ci-dessus"
+				;;
+		esac
+	fi
+}
+verif_files_existe
+action_a_realise

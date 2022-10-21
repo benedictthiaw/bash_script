@@ -1,0 +1,21 @@
+#!/bin/bash
+
+nbre_random=$(( $RANDOM % 50 + 1 ))
+#read -p "Merci de rentrer le nbre_find : " nbre_input
+nbre_input=0
+while [ nbre_random != nbre_input ]; do
+	echo "Le nbre à trouver est compris entre 1 et 50"
+	read -p "Merci de rentrer le nbre_find : " nbre_input
+	if [[ nbre_input -gt nbre_random ]]; then
+		echo "Le nombre entré est plus grand"
+	elif [[ nbre_input -lt nbre_random ]]; then
+		echo "Le nombre entré est plus petit"
+	else 
+		echo "Bravo !!! Vous avez trouvé !!!"
+		echo "Le nombre à trouvé était : $nbre_random"
+		break
+	fi
+done
+#echo "Bravo !!! Vous avez trouvé !!!" 
+#echo "Le nombre à trouvé était : $nbre_random"
+#echo "nombre = $nbre"

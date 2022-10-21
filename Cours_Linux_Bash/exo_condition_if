@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Merci de taper le mot : bonjour ou salut"
+read texte
+
+if [ $texte = "bonjour" ]; then
+	echo "Condition validée"
+elif [ $texte = "salut" ]; then 
+	echo "Condition validée avec salut"
+else 
+	#sinon
+	echo "Condition non validée"
+fi 

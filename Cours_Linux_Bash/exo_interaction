@@ -1,0 +1,10 @@
+#!/bin/bash
+
+printf "Quel est votre prénom ?"
+printf " "
+read prenom
+
+echo Quel est votre nom ?
+read nom
+
+echo Votre prénom est : $prenom et votre nom est : $nom.

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo "Merci de rentrer votre âge : "
+read age
+
+#vérification de l'existence de la variable
+if [ -z $age ]; then
+	echo "La valeur de la variable age est vide"
+	exit 0
+elif [ -n $age ]; then 
+	echo "La valeur de la variable age est $age et n'est pas vide"
+fi
+
+#### comparaison #######
+#Vérif l'égalité 
+if [ $age -eq 12 ]; then 
+	echo " Vous avez 12"
+fi
+
+# vérif s'il est mineur
+if [ $age -lt 18 ]; then 
+	echo "Vous êtes mineur"
+fi
+
+# Vérif s'il est majeur
+if [ $age -ge 18 ]; then 
+	echo "Vous êtes majeur"
+fi
+

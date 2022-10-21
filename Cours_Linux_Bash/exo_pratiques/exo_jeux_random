@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#nombre=$[($RANDOM % ($[$max - $min] + 1)) + $min]
+
+nbre=$(( $RANDOM % 50 + 1 ))
+nbre_input=0
+while [ $nbre -ne $nbre_input ]; do
+	read -p "Entrer un nbre aléatoire : " nbre_input
+	echo "Veuillez entrer un nbre entre 1 et 50"
+	if [ $nbre_input -gt $nbre ]; then 
+		echo 
+		echo "Le nombre entré est plus grand"
+		echo
+	elif [ $nbre_input -lt $nbre ]; then
+		echo
+		echo "Le nombre entré est plus petit"
+	        echo
+	elif [ $nbre -eq $nbre_input ]; then
+        	echo "Le nombre est juste !"
+        	echo 
+        	echo "Le nombre est : $nbre"
+		break
+
+       fi
+done       

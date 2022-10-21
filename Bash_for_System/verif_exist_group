@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#### Questions pour cet exercice  #####
+
+# Script capable de vérifier si le nom du groupe saisi correspond à un nom de groupe existant.
+# Pistes :
+# ====> •Utiliser le contenu du fichier /etc/group
+# ====> •Se servir de la commande cut
+
+#### boucler la demande
+nom_groupe="$1"
+while [ -z $nom_groupe ]; do
+	echo "Le nom du groupe est vide :"
+	read -p "===> Merci de rentrer un nom de groupe à vérifier : " nom_groupe
+done
+
+#### Verif existence nom d'un groupe
+cmde=`cat /etc/passwd | awk -F ":" '{ print $1 }' | grep "$nom_groupe"`
+if [[ $cmde == $nom_groupe ]]; then 
+	echo "Le nom du goupe $nom_groupe existe bien"
+else
+	echo "Le nom du groupe $nom_groupe n'existe pas"
+fi

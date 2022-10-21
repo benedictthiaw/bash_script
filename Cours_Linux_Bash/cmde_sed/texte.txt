@@ -1,0 +1,8 @@
+Bonjour je m'appelle Jordan.
+Il s'agit de la deuxième ligne du fichier.
+
+On peut y faire figurer des numéros : 3 4 et 5
+#On peut également y mettre des commentaires 
+Faire des lignes avec des caractères du type root:jordan:assouline
+
+ligne numéro 8. 

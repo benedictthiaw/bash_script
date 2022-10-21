@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ls=`ls`
+for i in $ls; do
+	echo "Il y a le fichier : $i"
+done

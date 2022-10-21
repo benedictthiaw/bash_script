@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#Utilistation de la boucle for qui décrémente
+read -p "Saisir un chiffre : " CHIFFRE
+for (( cpt=1; cpt=$CHIFFRE; cpt=$CHIFFRE -1 )); do
+	if [ $CHIFFRE -gt 0 ]; then
+	echo "Le résultat de cpt est $cpt"
+	CHIFFRE=`expr $CHIFFRE - 1`
+	fi
+done

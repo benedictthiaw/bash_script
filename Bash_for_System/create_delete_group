@@ -1,0 +1,69 @@
+#!/bin/bash
+
+#### Questions pour cet exercice ####
+# Script capable d'effectuer la création et la suppression d'un groupe.
+# Le script doit afficher un menu permettant à l'utilisateur de choisir s'il souhaite supprimer ou créer le groupe.
+# Le script doit vérifier si le groupe existe déjà.
+# Pistes :
+# ===> •Utiliser le script réalisé à l'exercice 2
+# ===> •Utiliser la fonction case pour laisser le choix à l'utilisateur
+
+#### Initialiser les variables
+nom_group="$1"
+### fonction pour vérif group
+verif_group_exist() {
+	cmde=`more /etc/group | cut -d: -f1 | grep $nom_group`
+	if [[ $cmde == $nom_group ]]; then
+		#echo "Le nom du groupe $nom_group existe déjà"
+		return 1
+	else
+		#echo "Le nom du groupe $nom_group n'existe pas"
+		return 2
+	fi
+}
+#### Message d'action
+echo "Merci de rentrer votre choix : "
+echo
+echo "===> 1 = Création d'un groupe"
+echo "===> 2 = Suppression d'un groupe"
+while [ -z $choix ]; do
+	read -p "Votre choix : " choix
+done
+case $choix in 
+	1) # Création d'un groupe
+		read -p "Merci de rentrer le nom du groupe à créer : " nom_group
+		verif_group_exist
+		if [[ $? -eq 1 ]]; then
+			echo "Le nom du groupe $nom_group existe déjà"
+			exit 1
+		else
+			sudo addgroup $nom_group
+			if [[ $? -eq 0 ]]; then
+				echo "Le Nom du groupe $nom_group a été bien créé"
+			else
+				echo "Impossible de créer le nom du groupe $nom_group"
+			fi
+		fi
+		;;
+	2) # Suppression d'un groupe
+		read -p "Merci de rentrer le nom du groupe à supprimer : " nom_group
+		verif_group_exist
+		if [[ $? -eq 2 ]]; then
+			echo "Le nom du groupe $nom_group n'existe pas"
+			exit 1
+		else
+
+			sudo delgroup $nom_group
+			if [[ $? -eq 0 ]]; then 
+				echo "Le Nom du groupe $nom_group a été bien supprimé"
+			else
+				echo "Impossible de supprimer le nom du groupe $nom_group"
+			fi
+		fi
+		;;
+	*) # Message d'erreur
+		echo "Merci de bien indique votre choix (1 ou 2)"
+		;;
+esac
+
+

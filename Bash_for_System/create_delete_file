@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#### Questions pour cet exercice ####
+# Script capable de créer ou de supprimer un fichier.
+# Menu permettant de laisser le choix à l'utilisateur.
+# Avant de créer un fichier, le script doit d'abord vérifier si le fichier existe.
+# Avant de supprimer un fichier, le script doit d'abord vérifier si le fichier existe.
+
+### Déclarer les variable principale
+basename="/home/benedict/scripting/Bash_for_System/fichiers"
+filename="$1"
+#### fonction de verif de l'existence d'un fichier
+verif_file_exist () {
+#### Message d'actio
+	if [ -e $basename/$filename ]; then
+		#echo "Positif"
+		return 1
+	else
+		#echo "Négatif"
+		return 2
+	fi
+}
+# Afficher les actions à faire
+echo "Merci d'indiquer votre choix :"
+echo "====> 1 = Créer un fichier"
+echo "====> 2 = Supprimer un fichier"
+while [ -z $choix ]; do
+	read -p "Votre choix : " choix
+done
+
+# Action à faire
+case $choix in 
+	1) # création de fichier
+		read -p "Merci de rentrer le nom du fichier à créer : " filename
+		verif_file_exist
+		if [ $? -eq 1 ]; then
+			echo "Le fichier $filename existe déjà"
+			exit 1
+		else
+			touch $basename/$filename && echo "Le fichier est bien créé"
+		fi
+		;;
+	2) # Suppression de fichier
+		read -p "Merci de rentrer le nom du fichier à supprimer : " filename
+		verif_file_exist
+		if [ $? == 2 ]; then
+			echo "Le fichier $filename n'existe pas"
+			exit 1
+		else
+			rm $basename/$filename && echo "Le fichier $filename est bien supprimé"
+		fi
+		;;
+	*) # Erreur de saisi
+		echo "Merci de choisir entre le 1 et 2 "
+		;;
+esac
+

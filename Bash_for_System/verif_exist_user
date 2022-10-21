@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Script capable de vérifier si le nom d'utilisateur saisi correspond à un nom d'utilisateur déjà existant.
+# Quelques pistes :
+#  - Utiliser le contenu du fichier /etc/passwd
+#  - Se servir de la commande cut
+
+### Boucler tant que la variable est vide
+nom_user="$1"
+while [ -z $nom_user ]; do
+	read -p "Merci de rentrer le nom de l'utilisateur à vérifier : " nom_user
+
+done
+### Vérifier si le nom du user entré est vide
+cmde=`cat /etc/passwd | awk -F ":" '{ print $1 }' | grep "$nom_user"`
+
+if [ $? -eq 0 ]; then 
+	echo "L'utilisateur $nom_user existe bien"
+else
+	echo "L'utilisateur $nom_user n'existe pas"
+fi

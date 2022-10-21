@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+#Quelle est la commande à taper pour demander à l'utilisateur de rentrer son nom et de le stocker dans la variable name ?
+
+echo "Quel est ton nom ?"
+
+read name
+
+#Quelle est la commande à taper pour demander à l'utilisateur de rentrer son âge et de la stocker dans la variable age ?
+
+echo "Quel est ton age ?"
+
+read age
+
+#Quelle est la commande à taper pour afficher à l'écran : "Bonjour NOM, tu as AGE ans." en remplaçant NOM et AGE par les valeurs entrées par l'utilisateur ?
+
+echo "Quel est ton nom ?"
+
+read name
+
+echo "Quel est ton age ?"
+
+read age
+
+echo "Bonjour $name, tu as $age ans."
+
+# Quelle est la commande à taper pour afficher à l'écran : "Dans 10 ans, tu auras AGEBIS ans" en remplaçant AGEBIS par l'âge de l'utilisateur auquel on a ajouté 10 ?
+
+agebis=`expr $age + 10`
+
+echo "Dans 10 ans, tu auras $agebis ans."
+
+

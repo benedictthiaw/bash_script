@@ -1,0 +1,67 @@
+#!/bin/bash
+
+### Questions pour cet exercice ####
+# Script capable d'effectuer la création et la suppression d'un utilisateur.
+# Le script doit afficher un menu permettant à l'utilisateur de choisir s'il souhaite supprimer ou créer l'utilisateur.
+# Le script doit vérifier si l'utilisateur existe déjà.
+# Pistes :
+# ===> •Utiliser le script réalisé à l'exercice 1
+# ===> •Utiliser la fonction case pour laisser le choix à l'utilisateur
+
+#set -x
+
+##### Initialisation des variables ######
+nom_user="$1"
+
+### Déclarer les taches à faire
+echo "Merci de rentrer un numéro correspondant à votre choix :"
+echo "1. création d'un utilisateur"
+echo "2. suppression d'un utilisateur"
+
+while [[ -z $choix ]]; do
+	read -p "Votre choix : " choix
+done
+
+#### Fonction pour vérifier l'existence d'un utilisateur
+verif_user_exist() {
+	#read -p "Merci de rentrer le nom de l'utilisateur à créer : " nom_user
+	cmde=`cat /etc/passwd | awk -F ":" '{ print $1 }' | grep "$nom_user"`
+	if [[ $cmde == $nom_user ]]; then
+		echo "Le nom de l'utilisateur $nom_user exite dejà"
+		echo 
+		return 0
+	else
+		echo "Le nom de l'utilisateur $nom_user n'existe pas"
+		echo
+		return 1
+	fi 
+}
+### Création d'un utilisateur ####
+if [[ $choix -eq 1 ]]; then
+	read -p "Merci de rentrer le nom de l'utilisateur à créer : " nom_user
+	verif_user_exist
+	if [[ $? == 1 ]]; then
+		sudo useradd $nom_user
+		if [[ $? == 0 ]]; then
+			echo "Nom d'utilisateur $nom_user bien créé"
+		else
+			echo "Impossible de créer nom user $nom_user"
+		fi
+	fi
+fi
+### Suppression d'un utilisateur 
+if [[ $choix -eq 2 ]]; then
+	read -p "Merci de rentrer le nom de l'utilisateur à supprimer : " nom_user
+	verif_user_exist
+	if [[ $? == 0 ]]; then 
+		sudo userdel $nom_user
+		if [[ $? == 0 ]]; then
+			echo "Nom user $nom_user bien supprimé"
+		else
+			echo "Impossible de supprimer le nom user $nom_user"
+		fi
+	fi
+fi
+	
+	
+

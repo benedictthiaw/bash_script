@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#### Questions pour cet exercice ####
+#Code permettant de réaliser un compteur qui commencer au chiffre rentré par l'utilisateur et qui descend jusqu'à 1
+read -p "Merci de rentrer un chiffre : " cpt
+while [ $cpt -ge 1 ]; do
+	echo "Le compteur est à $cpt"
+	cpt=`expr $cpt - 1`        
+done	

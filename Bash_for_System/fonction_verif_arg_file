@@ -1,0 +1,30 @@
+#!/bin/bash
+
+### Questions pour cet exercice ####
+# Réaliser le script respectant les règles suivantes :
+# •Script auquel on passe en argument une liste de fichiers.
+# •Le script va d'abord vérifier que l'utilisateur a bien saisi des arguments au moment de lance# r le script. Si ce n'est pas le cas, alors le script sort avec une erreur 2.
+# •Le script va vérifier si ces fichiers existent ou n'existent pas et nous afficher la réponse # à l'écran.
+# •Les commandes doivent être intégrées à des fonctions. On souhaite deux fonctions distinctes, une pour la vérification du nombre d'arguments et l'autre pour la vérification de l'existence des fichiers.
+
+files="$*"
+### Vérif l'entrer d'argument par l'utilisateur
+verif_arg() {
+	if [[ -z $files ]]; then 
+		echo "Vous n'avez pas entrer d'argument"
+		exit 2
+	fi
+}
+### Verif l'existence d'un fichier
+verif_exist_file () {
+	for fichier in $files; do
+		if [ -e $fichier ]; then 
+			echo "Le fichier $fichier existe bien"
+		else
+			echo "Le fichier $fichier n'existe pas"
+		fi
+	done
+}
+verif_arg
+verif_exist_file
+

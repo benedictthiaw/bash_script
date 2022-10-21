@@ -1,0 +1,38 @@
+#!/bin/bash 
+
+#### Questions pour cet exercice ####
+# Script capable de modifier les droits de propriété sur un fichier.
+# Avant de modifier les propriétés sur un fichier, le script doit vérifier qu'il existe bien.
+# Le script doit demander le nom du nouvel utilisateur et du nouveau groupe propriétaires.
+
+### Déclarer les variable ###
+basename="/home/benedict/scripting/Bash_for_System/fichiers"
+filename="$1"
+
+### Verif existence fichier
+verif_fichier_exist() {
+	if [ -e $basename/$filename ]; then
+		#echo "Positif"
+		return 1
+	else
+		#echo "Négatif"
+		return 2
+	fi
+}
+
+### Entrer le fichier à modifier
+while [ -z $filename ]; do
+	read -p "Votre fichier : " filename
+done
+verif_fichier_exist
+if [ $? == 1 ]; then
+	read -p "Quel est le nom de l'utilisateur propriétaire ? " nom_user
+	sudo chown $nom_user $basename/$filename && echo "Nom d'utilisateur $nom_user bien créé"
+	read -p "Quel est le nom du groupe propriétaire  ? " nom_group
+	sudo chown :$nom_group $basename/$filename && echo "Nom du groupe $nom_group bien créé"
+else
+	echo "Le fichier $filename n'existe pas"
+	exit 1
+fi
+
+

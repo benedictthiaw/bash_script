@@ -1,0 +1,42 @@
+#!/bin/bash
+
+##### 1. Code pour : #####
+#Demande le nom et le prénom de l’utilisateur
+#Vérifie que les chaînes de caractères sont vides
+#Arrêter le script si elles le sont
+read -p "Quel sont votre nom : " nom
+echo "Quel est votre prénom ?"
+read prenom
+
+if [ -z $nom ] || [ -z $prenom ]; then
+	echo "Vueillez entrer votre nom et prenom"
+	exit 0
+fi
+
+##### 2. Code pour : #####
+#Demande à l’utilisateur son âge
+#Vérifie que la chaîne de caractère n’est pas vide
+echo "Quel est votre age ?"
+read age
+
+if [ -z $age ]; then
+	echo "L'age est vide"
+	exit 1	
+
+##### 3. Code pour : #######
+#Dit bonjour à l’utilisateur en lui indiquant son nom et prénom :
+#« Bonjour Jordan Assouline et bienvenu ! »
+echo "Bonjour $prenom $nom et bienvenue !"
+
+###### 4. Code pour : ########
+#Indique si l’utilisateur est majeur ou mineur.
+if [ $age -lt 18 ]; then
+	echo "Vous êtes mineur."
+elif [ $age -ge 18 ]; then 
+      echo "Vous êtes majeur."	
+fi
+
+##### Code pour : #######
+#Lui donne son âge + 40 ans
+age_futur=`expr $age + 40`
+echo "Dans 40ans, vous aurez $age_futur ans." 

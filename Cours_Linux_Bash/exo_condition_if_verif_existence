@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Merci de taper le mot : bonjour ou salut"
+read texte
+
+# Vérif de l'existence d'un mot
+if [ -z $texte ]; then 
+	echo "Le mot est vide"
+elif [ -n $texte ]; then 
+	echo "le mot n'est pas vide"
+fi

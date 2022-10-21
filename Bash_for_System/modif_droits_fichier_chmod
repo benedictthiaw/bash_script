@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#### Questions pour cet exercice ####
+# Script capable de modifier les droits sur le fichier rentré par l'utilisateur, du propriétaire, du groupe, et des autres.
+# Le script doit vérifier que le fichier existe bien.
+# Le script demande d'abord les nouveaux droits pour l'utilisateur propriétaire, puis pour le groupe, et enfin pour les autres.
+
+### initaliser les variable
+basename="/home/benedict/scripting/Bash_for_System/fichiers/"
+filename="$1"
+### fonction pour verif l'existence 
+verif_file_exist (){
+	if [ -e $basename/$filename ]; then
+		#echo Positif
+		return 1
+	else
+		#echo Négatif
+		return 2
+	fi
+}
+
+### Modifier les droits
+# Déclarer le fichier
+while [ -z $filename ]; do
+	read -p "Merci d'entrer le nom du fichier à modifier : " filename
+	verif_file_exist
+done
+
+verif_file_exist 
+if [[ $? == 1 ]]; then
+	# Modifier droit user
+	read -p "Modif droit user : " new_user
+	chmod u+$new_user $basename/$filename && echo "Droit user bien modifié"
+
+	# Modif droit group
+	read -p "Modif droit group : " new_group
+	chmod g+$new_group $basename/$filename && echo "Droit group bien modifié"
+
+	# Modif droit other
+	read -p "Modif autre droit : " new_other
+	chmod o+$new_other $basename/$filename && echo "Droit other bien modifié"
+
+	echo ""
+	ls -l $basename$filename 
+else
+	echo "Le fichier $filename n'existe pas"
+fi
+
+

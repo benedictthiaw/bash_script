@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo Quel est le premier chiffre ?
+read chiffre1
+
+echo Quel est le deuxième chiffre ?
+read chiffre2
+
+total=$((chiffre1+chiffre2))
+
+total = `expr $chiffre1 + $chiffre2`
+
+echo simple : $total
+
+echo expr : $total
+
